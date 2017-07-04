@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img {
+            position: absolute;
+        }
+
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+<img src="images/tianshi.gif" alt="" id="im"/>
+<script src="common.js"></script>
+<script>
+    var evtTools = {
+        //获取事件参数对象
+        getEvent: function (e) {
+            return window.event || e;
+        },
+        //获取显示区的横坐标
+        getClientX: function (e) {
+            return this.getEvent(e).clientX;
+        },
+        //获取显示区的纵坐标
+        getClientY: function (e) {
+            return this.getEvent(e).clientY;
+        },
+        //获取页面向左卷曲出去的横坐标
+        getScrollLeft: function () {
+            return window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft || 0;
+        },
+        //获取页面向上卷曲出去的横坐标
+        getScrollTop: function () {
+            return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
+        },
+        //获取相对页面的横坐标（向左卷曲出去的横坐标+显示区的横坐标）
+        getPageX: function (e) {
+            return this.getEvent(e).pageX || this.getScrollLeft() + this.getClientX(e);
+        },
+        //获取相对页面的纵坐标（向左卷曲出去的纵坐标+显示区的纵坐标）
+        getPageY: function (e) {
+            return this.getEvent(e).pageY ? this.getEvent(e).pageY : this.getScrollTop() + this.getClientY(e);
+        }
+    };
+    document.onmousemove = function (e) {
+        $id("im").style.left = evtTools.getPageX(e) + "px";
+        $id("im").style.top = evtTools.getPageY(e) + "px";
+    };
+</script>
+</body>
+</html>

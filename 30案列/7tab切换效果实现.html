@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .hd {
+            height: 45px;
+        }
+
+        .hd span {
+            display: inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .hd span.current {
+            background-color: purple;
+        }
+
+        .bd li {
+            height: 255px;
+            background-color: purple;
+            display: none;
+        }
+
+        .bd li.current {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box" id="box">
+    <div class="hd">
+        <span class="current">体育</span>
+        <span>娱乐</span>
+        <span>新闻</span>
+        <span>综合</span>
+    </div>
+    <div class="bd">
+        <ul>
+            <li class="current">我是体育模块</li>
+            <li>我是娱乐模块</li>
+            <li>我是新闻模块</li>
+            <li>我是综合模块</li>
+        </ul>
+    </div>
+</div>
+<script src="common.js"></script>
+<script>
+    var hds = $id("box").getElementsByClassName("hd")[0];
+    //获取每个span
+    var spans = hds.getElementsByTagName("span");
+    //获取每个li
+    var bds = $id("box").getElementsByClassName("bd")[0];
+    lis = bds.getElementsByTagName("li");
+    for (var i = 0; i < spans.length; i++) {
+        //为每个span添加一个自定义属性，以便与li对应索引号
+        spans[i].setAttribute("index", i);
+        //为每个span注册点击事件
+        spans[i].onclick = function () {
+            //为每个span恢复默认设置
+            for (var j = 0; j < spans.length; j++) {
+                spans[j].className = "";
+            }
+            //为当前被点击的span设置类样式
+            this.className = "current";
+            //为每个li恢复默认设置
+            for (var k = 0; k < lis.length; k++) {
+                lis[k].className = "";
+            }
+            lis[this.getAttribute("index")].className = "current";
+            //为对应的每个li设置相同类样式
+
+        }
+    }
+</script>
+</body>
+</html>
