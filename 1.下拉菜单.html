@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/index1.css" media="all"/>
+    <title>制作缓冲效果下拉菜单</title>
+    <style>
+        ul.topnav li span {
+            width: 17px;
+            height: 35px;
+            float: left;
+            background: url(images/subnav_btn.gif) no-repeat center top;
+        }
+
+        .subnav .cls {
+            background-color: #222;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="topnav" id="topnav">
+    <li><a href="#">8iooi8</a></li>
+    <li>
+        <a href="#">8iooi8一号</a>
+       <span class="arrow">
+           <ul class="subnav">
+               <li><a href="#">8iooi8下拉菜单内容</a></li>
+               <li><a href="#">8iooi8下拉菜单内容</a></li>
+           </ul>
+        </span>
+    </li>
+    <li>
+        <a href="#">8iooi8二号</a>
+        <span class="arrow">
+            <ul class="subnav">
+                <li><a href="#">8iooi8下拉菜单内容</a></li>
+                <li><a href="#">8iooi8下拉菜单内容</a></li>
+                <li><a href="#">8iooi8下拉菜单内容</a></li>
+                <li><a href="#">8iooi8下拉菜单内容</a></li>
+                <li><a href="#">8iooi8下拉菜单内容</a></li>
+            </ul>
+        </span>
+    </li>
+    <li><a href="#">8iooi8三号</a>
+       <span class="arrow">
+           <ul class="subnav">
+               <li><a href="#">8iooi8下拉菜单内容</a></li>
+               <li><a href="#">8iooi8下拉菜单内容</a></li>
+               <li><a href="#">8iooi8下拉菜单内容</a></li>
+           </ul>
+        </span>
+    </li>
+    <li><a href="#">8iooi8四号</a></li>
+    <li><a href="#">8iooi8五号</a></li>
+</ul>
+<script src="common.js"></script>
+<script>
+    var list = $id("topnav").getElementsByTagName("li");
+    for (var i = 0; i < list.length; i++) {
+        if (getLastElementByParent(list[i]).nodeName == "SPAN") {
+            var spans = getLastElementByParent(list[i]);
+            console.log(spans);
+            //为每个span注册鼠标进入和鼠标离开事件
+            var uls = "";
+            spans.onmouseover = function () {
+                uls = this.getElementsByClassName("subnav")[0];
+                uls.style.display = "block";
+                var lis = this.getElementsByTagName("li");
+                for (var k = 0; k < lis.length; k++) {
+                    lis[k].onmouseover = function () {
+                        this.className = "cls";
+//                        this.style.height="34px";
+                    };
+                    lis[k].onmouseout = function () {
+                        this.className = "";
+                    };
+                }
+            };
+            spans.onmouseout = function () {
+                uls.style.display = "";
+            };
+        }
+    }
+</script>
+</body>
+</html>

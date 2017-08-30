@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        input {
+            background-color: transparent;
+        }
+
+        #btn {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div id="box" style="width:300px;height:400px;background:url('images/birdfly.gif') no-repeat center">
+
+    <input type="button" value="用❤拼字" id="btn"/><br/><br/>
+    字&nbsp;1：<input class="cls" type="text"/><br/>
+    字&nbsp;2：<input class="cls" type="text"/><br/>
+    字&nbsp;3：<input class="cls" type="text"/><br/>
+    字&nbsp;4：<input class="cls" type="text"/><br/><br/>
+    结果是：<input type="text" id="result"/>
+</div>
+</body>
+<script src="common.js"></script>
+<script>
+    //获取每个input
+    var inputs = $id("box").getElementsByClassName("cls");
+    //查找里面的每个文本框除了结果
+    $id("btn").onclick = function () {
+        var arr = [];
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].type == "text") {
+                arr.push(inputs[i].value);
+
+            }
+        }
+        var str = arr.join("❤");
+        $id("result").style.background="purple";
+        $id("result").value=str;
+    };
+</script>
+</html>

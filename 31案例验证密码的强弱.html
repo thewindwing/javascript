@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #dv {
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            left: 300px;
+            top: 100px;
+        }
+
+        .strengthLv0 {
+            height: 6px;
+            width: 120px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+        .strengthLv1 {
+            background: red;
+            height: 6px;
+            width: 40px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+        .strengthLv2 {
+            background: orange;
+            height: 6px;
+            width: 80px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+        .strengthLv3 {
+            background: green;
+            height: 6px;
+            width: 120px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+    </style>
+<body>
+<div id="dv">
+    <label for="pwd">密码</label>
+    <input type="text" id="pwd" maxlength="16"><!--课外话题-->
+    <div>
+        <em>密码强度：</em>
+        <em id="strength"></em>
+
+        <div id="strengthLevel" class="strengthLv0"></div>
+    </div>
+</div>
+<script src="common.js"></script>
+<script>
+    //密码只有数字或字母或特殊符号的一种则密码强度为1
+    //有其中两个，则密码强度为2
+    //为3个则密码强度为3，再根据密码强度改变div的颜色值
+    //封装一个函数，获取密码强度值
+    function pswGrade(element) {
+        var lvl = 0;
+        if (/\d/.test(element)) {
+            lvl++;
+        }
+        if (/[a-zA-Z_]/.test(element)) {
+            lvl++;
+        }
+        if (/\W/.test(element)) {
+            lvl++;
+        }
+        return lvl;
+    }
+
+    //为input注册键盘抬起事件
+    $id("pwd").onkeyup = function () {
+        var flag = this.value.length >= 6 ? pswGrade(this.value) : 0;
+        $id("strengthLevel").className = "strengthLv" + flag;
+
+    };
+
+
+    /*var re=new RegExp(/\d{3}/);
+     console.log(re.test("5245"));
+     var str="what are you doing";
+     console.log(str.match(/\0/));
+     console.log(str.match(/a(?!r)/));*/
+
+    /* var str="你好你Evereey man in the world! Every woman on earth!";*/
+    /* var reg=/e/g;
+     console.log(reg.exec("你好你Evereey man in the world! Every woman on earth!"));
+     console.log(reg.exec("你好你Evereey man in the world! Every woman on earth!"));
+     //    console.log(str.match(/[e]/g));
+     var reg=/帅/g;//正则表达式
+     var arr= reg.exec("帅,不仅是外表,也是内心的帅,就是这么帅,为什么这么帅");
+     console.log(arr);
+     console.log(reg.exec("帅,不仅是外表,也是内心的帅,就是这么帅,为什么这么帅"));
+     console.log(reg.exec("帅,不仅是外表,也是内心的帅,就是这么帅,为什么这么帅"));
+     console.log(reg.exec("帅,不仅是外表,也是内心的帅,就是这么帅,为什么这么帅"));
+     console.log(reg.exec("帅,不仅是外表,也是内心的帅,就是这么帅,为什么这么帅"));*/
+    /* patt1=/man/g;
+     str2=str.replace(patt1,"person");
+     document.write(str2+"<br />");
+
+     patt2=/(wo)?man/g;
+     //    patt1.compile(patt2);
+     str2=str.replace(patt2,"person");
+     document.write(str2);*/
+
+
+    /* var str="l\n i" +
+     "mooo!";
+     console.log(str.match(/[\\\n]/g));*/
+    /*document.write(str.search(/W3School/));
+     console.log(str.search("si"));
+     console.log(str.search(/si/));
+     console.log(str.search(/si/g));
+     console.log(str.match(/o/));
+     console.log(str.match(/o/g));
+     console.log(str.replace("i","nu"));
+     console.log(str.replace(/i/g,"nu"));*/
+    /* console.log("n  im ii".split(/\s/,3));
+     var string="\t\0  n  im ii  ";
+     console.log("==="+string.trim()+"==");
+     console.log(string.replace(/\s/g,""))*/
+</script>
+</body>
+</html>

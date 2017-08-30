@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="bigBox" style="width:300px;height:200px;border:2px dotted #0ff;">
+    <div id="subBox">
+        <br/>
+        账号：<input type="text" id="userName"/><br/><br/>
+        密码：<input type="text" id="pwd"/><br/>
+        <br/>
+        <span id="inf">提示信息</span><br/>
+        <input type="button" id="login" value="登录"/>
+    </div>
+</div>
+</body>
+<script src="common.js"></script>
+<script>
+    //根据id获取按钮，注册点击事件，添加事件处理函数
+    $id("login").onclick = function () {
+        //密码和账号都正确
+        if ($id("userName").value == "admin" && $id("pwd").value == "789") {
+            $id("subBox").style.display = "none";
+            $id("bigBox").innerText = "登录成功";
+        } else {
+            //密码或账号有错误
+            $id("inf").innerText = "账号或密码错误";
+            $id("userName").value = "";
+            $id("pwd").value = "";
+        }
+    };
+</script>
+</html>

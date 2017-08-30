@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style>
+        * {
+            word-wrap: break-word;
+        }
+
+        .wp {
+            width: 730px;
+            margin: 0px auto;
+        }
+
+        .mtn {
+            margin-top: 5px !important;
+        }
+
+        #ct .frame {
+            margin: 0;
+            border: none;
+        }
+
+        .xfs_2 .frame-title, .xfs_2 .frametitle, .xfs_2 .tab-title {
+            background-color: #A90000;
+            background-position: 0 -99px;
+        }
+
+        .xfs .frame-title, .xfs .frametitle, .xfs .tab-title, .xfs .frame-title a, .xfs .frametitle a, .xfs .tab-title a {
+            color: #FFF !important;
+        }
+
+        .xfs .frame-title, .xfs .frametitle, .xfs .tab-title {
+            border: none;
+            background: transparent url(images/mu.png) repeat-x 0 95;
+        }
+
+        .title {
+            padding: 0 10px;
+            height: 32px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 32px;
+            overflow: hidden;
+        }
+
+        .block {
+            margin: 10px 10px 0;
+        }
+
+        ul, menu, dir {
+            display: block;
+            list-style-type: disc;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            -webkit-padding-start: 25px;
+        }
+
+        .mls li {
+            padding: 0 0 5px;
+            width: 66px;
+            height: 85px;
+        }
+
+        .ml li {
+            float: left;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            font: 12px/1.5 Tahoma, 'Microsoft Yahei', 'Simsun';
+        }
+
+        .mls p {
+            margin-top: 5px;
+        }
+
+        .ml p, .ml span {
+            display: block;
+            width: 100%;
+            height: 20px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .mls img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .ml img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        a img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wp mtn">
+    <div id="diy3" class="area">
+        <div id="frameipq7f2" class="xfs xfs_2 frame move-span cl frame-1">
+            <div
+                    class="title frame-title"><span class="titletext">当前在线用户</span></div>
+            <div id="frameipq7f2_left"
+                 class="column frame-1-c">
+                <div
+                        id="frameipq7f2_left_temp" class="move-span temp"></div>
+                <div id="portal_block_695"
+                     class="block move-span">
+                    <div
+                            id="portal_block_695_content" class="dxb_bc">
+                        <div class="module cl ml mls" id="users">
+                            <ul></ul>
+                            <!--li都在这个ul中创建-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="common.js"></script>
+<script>
+    var userData = [
+        {"name": "Don", "icon": "images/noavatar_small.gif"},
+        {"name": "Douglas", "icon": "images/noavatar_small.gif"},
+        {"name": "Ford", "icon": "images/noavatar_small.gif"},
+        {"name": "Derrick", "icon": "images/noavatar_small.gif"},
+        {"name": "xiaoyang", "icon": "images/noavatar_small.gif"},
+        {"name": "shuaixiaoyang", "icon": "images/noavatar_small.gif"},
+        {"name": "shuiyang", "icon": "images/noavatar_small.gif"},
+        {"name": "Eden", "icon": "images/noavatar_small.gif"},
+        {"name": "dizu", "icon": "images/noavatar_small.gif"},
+        {"name": "gege", "icon": "images/noavatar_small.gif"},
+        {"name": "woqu", "icon": "images/noavatar_small.gif"},
+        {"name": "ni", "icon": "images/noavatar_small.gif"},
+        {"name": "nn", "icon": "images/noavatar_small.gif"},
+        {"name": "ge", "icon": "images/noavatar_small.gif"},
+        {"name": "tui", "icon": "images/noavatar_small.gif"},
+        {"name": "xiao", "icon": "images/noavatar_small.gif"},
+        {"name": "yang", "icon": "images/noavatar_small.gif"},
+        {"name": "cai", "icon": "images/noavatar_small.gif"},
+        {"name": "shi", "icon": "images/noavatar_small.gif"},
+        {"name": "zui", "icon": "images/noavatar_small.gif"},
+        {"name": "shuai", "icon": "images/noavatar_small.gif"},
+        {"name": "denan", "icon": "images/noavatar_small.gif"},
+        {"name": "ren", "icon": "images/noavatar_small.gif"},
+        {"name": "woaini", "icon": "images/noavatar_small.gif"},
+        {"name": "mendou", "icon": "images/noavatar_small.gif"}
+    ];
+    //创建多个li,由userData长度决定
+    for (var i = 0; i < userData.length; i++) {
+        var dt = userData[i];
+        var liObj = document.createElement("li");
+        $id("users").children[0].appendChild(liObj);
+        //创建li中的a
+        var aObj = document.createElement("a");
+        liObj.appendChild(aObj);
+        aObj.innerHTML = "<img src='" + dt.icon + "'/>";
+        //创建li中的p
+        var pObj = document.createElement("p");
+        liObj.appendChild(pObj);
+        pObj.innerHTML = "<a href='javascript:void(0)'>" + dt.name + "</a>";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /**{*/
+        /*padding:0;*/
+        /*margin:0;*/
+        /*}*/
+        body {
+            background: #ccc;
+        }
+
+        #album {
+            width: 600px;
+            height: 800px;
+            margin: 50px 200px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #album li {
+            float: left;
+            margin-right: 20px;
+        }
+
+        li img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #box {
+            width: 450px;
+            height: 400px;
+            margin-left: 50px;
+            text-align: center;
+            color: #666;
+            font: bold 50px/400px 宋体;
+
+        }
+
+        .clearfloat:after {
+            display: block;
+            clear: both;
+            content: "";
+            height: 0;
+            visibility: hidden;
+            line-height: 0;
+        }
+
+        .cls {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+<div id="album">
+    <h2>画册</h2>
+    <ul id="photo" class="clearfloat">
+        <li><a href="http://www.baidu.com"><img src="images/bird.png" alt="" title="火烈金鸟"/></a></li>
+        <li><a href="#"><img src="images/birdfly.gif" alt="" title="我要飞得更高"/></a></li>
+        <li><a href="#"><img src="images/libai.jpg" alt="" title="唐代诗人李白"/></a></li>
+        <li><a href="#"><img src="images/noavatar_small.gif" alt="" title="小蘑菇"/></a></li>
+    </ul>
+    <div id="box">
+        450×400
+    </div>
+    <p id="title">选择一个图片</p>
+</div>
+</body>
+<script src="common.js"></script>
+<script>
+    //获取每个Li
+    var list = $id("photo").getElementsByTagName("li");
+    //循环遍历每个li，
+    for (var i = 0; i < list.length; i++) {
+        //获取li下面的每个a
+        var as = list[i].getElementsByTagName("a")[0];
+        //为每个a注册点击事件
+        as.onclick = function () {
+            //清空box的内容
+            setInnerText($id("box"), "");
+            //设置box的背景图片为a的img图片
+            $id("box").style.backgroundImage = "url(" + this.firstChild.src + ")";
+            //设置box的背景图片样式
+            $id("box").className = "cls";
+            //设置p标签的内容和点击图片的标题一致
+            setInnerText($id("title"), this.firstChild.title);
+            //阻止超链接跳转
+            return false;
+        };
+    }
+
+</script>
+</html>

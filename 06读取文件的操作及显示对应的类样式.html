@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+</head>
+<body>
+<input type="file" id="fl"/>
+<script>
+
+  /*
+  * file的这个元素是上传文件的
+  * file.onchange的事件中可以获取文件的信息(只要上传文件该事件就会触发)
+  * 需要通过FileReader--->读取文件的,就可以做相关的操作
+  *
+  *
+  * */
+  //读取一个css文件.改变页面的背景颜色
+
+
+  //获取file元素
+  var file=document.querySelector("#fl");
+  file.onchange=function () {
+    //上传了一个文件,获取文件
+    var fl=file.files[0];
+    console.log(fl);
+    //读取文件---创建了一个读取文件的对象
+    var fReader=new FileReader;
+    console.log(fReader)
+    fReader.readAsText(fl);//此时就可以读取了
+    //读取完毕的事件
+    fReader.onload=function () {
+      //当文件读取完毕后,获取读取的结果
+     console.log(fReader);
+      var result=fReader.result;
+      console.log(result);
+      //改变页面的背景颜色
+      //创建一个style标签
+      var style=document.createElement("style");
+      //设置标签的内容
+      style.innerHTML=result;
+      //把该标签放在head标签中
+      document.querySelector("head").appendChild(style);
+    };
+  };
+
+
+</script>
+<script>
+  //获取文件标签的元素
+//  var file=document.querySelector("#fl");
+//  //发生改变的事件
+// file.onchange=function () {
+//  // console.log(file.files);
+//   //获取上传的第一个文件
+//   var fl=file.files[0];
+//   console.log(fl);
+// };
+
+
+
+
+  //console.log(file);//应该是一个对象
+  //file--->操作文件的
+  //file.files--->对象--->可以获取每个图片的文件
+
+//  document.getElementById("btn").onclick=function () {
+//    console.log(file.files[0]);
+//  };
+
+  //查看该对象中有什么属性或者是方法或者事件
+//  for(var key in file){
+//    //console.log(key);
+//  }
+</script>
+</body>
+</html>

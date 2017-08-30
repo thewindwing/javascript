@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            width: 300px;
+            margin: 100px auto 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+            width: 300px;
+        }
+
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #fff;
+        }
+
+        td {
+            font: 14px "微软雅黑";
+        }
+
+        tbody tr {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <input type="checkbox" id="j_cbAll"/>
+            </th>
+            <th>菜名</th>
+            <th>饭店</th>
+        </tr>
+        </thead>
+        <tbody id="j_tb">
+        <tr>
+            <td>
+                <input type="checkbox"/>
+            </td>
+            <td>红烧肉</td>
+            <td>田老师</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox"/>
+            </td>
+            <td>西红柿鸡蛋</td>
+            <td>田老师</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox"/>
+            </td>
+            <td>油炸榴莲</td>
+            <td>田老师</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox"/>
+            </td>
+            <td>清蒸助教</td>
+            <td>田老师</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<script src="common.js"></script>
+<script>
+    //获取tbody中每一个复选框
+    var cbs = $id("j_tb").getElementsByTagName("input");
+    //设置thead的复选框和tbody内的所有复选框的选中状态一致
+    $id("j_cbAll").onclick = function () {
+
+        for (var k = 0; k < cbs.length; k++) {
+            cbs[k].checked = this.checked;
+        }
+    };
+    //为tbody中每个复选框注册点击事件，每点击一个，就判断其他复选框是否选中，若都选中，则thead的复选框也选中，若有一个未选中，则thead的复选框为未选中
+    for (var k = 0; k < cbs.length; k++) {
+        cbs[k].onclick = function () {
+            var flag = true;
+            for (var m = 0; m < cbs.length; m++) {
+                //有一个未被选中就结束整个循环
+                if (!cbs[m].checked) {
+                    flag = false;
+                    break;
+                }
+            }
+            $id("j_cbAll").checked = flag;
+        }
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .td1 {
+            width: 145px;
+        }
+
+        .td2 {
+            width: 95px;
+        }
+
+        .td3 {
+            width: 80px;
+        }
+
+        .td4 {
+            width: 80px;
+        }
+    </style>
+
+</head>
+<body>
+<input type="button" value="生成表格" id="btn"/><br/>
+<input type="button" value="添加" id="btnAdd"/><br/>
+
+<div id="box">
+
+</div>
+<script src="common.js"></script>
+<script>
+    var heads = ["姓名", "科目", "分数", "操作"];
+    var datas = [
+        {"name": "乔峰", "subject": "语文1", "score": 99.8},
+        {"name": "张三丰", "subject": "语文2", "score": 80.8},
+        {"name": "张无忌", "subject": "语文3", "score": 70.8},
+        {"name": "梅超风", "subject": "语文4", "score": 100},
+        {"name": "黄老邪", "subject": "语文5", "score": 60},
+        {"name": "凤姐", "subject": "语文6", "score": 70},
+        {"name": "芙蓉姐姐", "subject": "语文7", "score": 89.8}
+    ];
+    //注册点击添加事件
+    $id("btnAdd").onclick=function(){
+        //创建tr，放入tbody中
+        var trAdd=document.createElement("tr");
+        $id("tbd").appendChild(trAdd);
+        //循环创建前三个td
+        for(var k=0;k<3;k++){
+            var td=document.createElement("td");
+            trAdd.appendChild(td);
+            td.innerHTML="<input style='width:65px'/>";
+        }
+        //创建第四个td
+        var tdLastCell=document.createElement("td");
+        trAdd.appendChild(tdLastCell);
+        //创建确定链接
+        var sureLink=document.createElement("a");
+        tdLastCell.appendChild(sureLink);
+        sureLink.innerHTML="确定";
+        sureLink.href="javascript:void(0)";
+        //注册确定点击事件
+        sureLink.onclick=function(){
+            var name=this.parentNode.parentNode.children[0].children[0].value;
+            var subject=this.parentNode.parentNode.children[1].children[0].value;
+            var score=this.parentNode.parentNode.children[2].children[0].value;
+            datas.push({"name":name,"subject":subject,"score":score});
+            createTable();
+//            console.log(datas.length)
+        };
+        //创建取消链接
+        var cancelLink=document.createElement("a");
+        tdLastCell.appendChild(cancelLink);
+        cancelLink.innerHTML="取消";
+        cancelLink.href="javascript:void(0)";
+        //注册取消点击事件
+        cancelLink.onclick=function(){
+            $id("tbd").removeChild(this.parentNode.parentNode);
+        };
+    };
+
+
+
+    //注册点击生成表格事件
+    $id("btn").onclick = createTable;
+    function createTable() {
+        if ($id("table")) {
+            $id("box").removeChild($id("table"));
+        }
+        //创建一个table，放入box中
+        var tableObj = document.createElement("table");
+        $id("box").appendChild(tableObj);
+        tableObj.border = "1";
+        tableObj.style.borderCollapse = "collapse";
+        tableObj.id = "table";
+        //创建thead，放入table中——————————————————————————
+        var theadObj = document.createElement("thead");
+        tableObj.appendChild(theadObj);
+        //创建tr，放入thead中
+        var trhObj = document.createElement("tr");
+        theadObj.appendChild(trhObj);
+        //循环创建四个th，放入tr中
+        for (var i = 0; i < heads.length; i++) {
+            var thObj = document.createElement("th");
+            trhObj.appendChild(thObj);
+            thObj.innerHTML = heads[i];
+            thObj.style.height = "50px";
+            thObj.className = "td" +( i+1);
+            thObj.style.background = "#ccc";
+        }
+        //创建tbody。放入table中———————————————————————————
+        var tbodyObj=document.createElement("tbody");
+        tableObj.appendChild(tbodyObj);
+        tbodyObj.id="tbd";
+        //循环创建tr，放入tbo中
+        for(var j=0;j<datas.length;j++){
+            var trObj=document.createElement("tr");
+            tbodyObj.appendChild(trObj);
+            tbodyObj.style.textAlign="center";
+            var dt=datas[j];
+            //循环创建前三个td,放入tr中
+            for(var key in dt){
+                var tdObj=document.createElement("td");
+                trObj.appendChild(tdObj);
+                tdObj.innerHTML=dt[key];
+            }
+            //创建删除项td,放入tr中
+            var deleteObj=document.createElement("td");
+            trObj.appendChild(deleteObj);
+            //创建a,放入td中
+            var deleteLink=document.createElement("a");
+            deleteObj.appendChild(deleteLink);
+            deleteLink.innerHTML="删除";
+            deleteLink.href="javascript:void(0)";
+            //为a.注册点击删除事件
+            deleteLink.onclick=function(){
+              tbodyObj.removeChild(this.parentNode.parentNode);
+            };
+        }
+    };
+
+
+
+</script>
+</body>
+</html>

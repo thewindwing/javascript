@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style>
+        #box {
+            margin: 50px auto;
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background: url(images/clock.jpg) center;
+        }
+
+        img {
+            position: absolute;
+            left: 50%;
+            margin-left: -15px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="images/hour.png" alt="" id="image2"/>
+    <img src="images/minute.png" alt="" id="image3"/>
+    <img src="images/second.png" alt="" id="image4"/>
+</div>
+<script src="common.js"></script>
+<script>
+    function clock() {
+        var nowDate = new Date();
+        var h = nowDate.getHours();
+        var m = nowDate.getMinutes();
+        var s = nowDate.getSeconds();
+        var ms = nowDate.getMilliseconds();
+
+        $id("image4").style.transform = "rotate(" + (ms / 1000 + s) * 6 + "deg)";
+        $id("image3").style.transform = "rotate(" + (s * 6 / 60 + m * 6) + "deg)";
+        $id("image2").style.transform = "rotate(" + (s / 60 / 60 + m / 60 + h) * 30 + "deg)";
+    }
+    setInterval(clock, 100);
+</script>
+</body>
+
+</html>

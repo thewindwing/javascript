@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul {
+            list-style: none
+        }
+
+        img {
+            vertical-align: top
+        }
+
+        .box {
+            width: 730px;
+            height: 454px;
+            margin: 100px auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .inner {
+            width: 730px;
+            height: 454px;
+            background-color: pink;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .inner ul {
+            width: 1000%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .inner li {
+            float: left;
+        }
+
+        .square {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .square span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
+        .square span.current {
+            background-color: orangered;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="inner"><!--相框-->
+        <ul>
+            <li><a href="#"><img src="images/1-.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/2-.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/3-.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/4-.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/5-.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/6-.jpg" alt=""/></a></li>
+        </ul>
+        <div class="square">
+            <span class="current">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+        </div>
+    </div>
+</div>
+<script src="common.js"></script>
+<script>
+    //获取相框
+    var inner = $id("box").children[0];
+    //获取相框宽度
+    var imgWidth = inner.offsetWidth;
+    //获取ul
+    var ulObj = inner.children[0];
+    //获取焦点span
+    var spans = inner.children[1].children;
+    //循环遍历每个span，为其设置鼠标进入事件，并显示对应的图片
+    for (var i = 0; i < spans.length; i++) {
+        //为每个span添加一个属性index，用来存放其索引值
+        spans[i].setAttribute("index", i);
+        spans[i].onmouseover = function () {
+            //先设置每个span的类样式恢复默认-----排它
+            for (var j = 0; j < spans.length; j++) {
+                spans[j].removeAttribute("class");
+            }
+            //再设置当前span的类样式
+            this.className = "current";
+            //获取当前span的索引值，以便显示对应的图片
+            var pic = this.getAttribute("index");
+            animate(ulObj, -pic * imgWidth);
+        };
+    }
+</script>
+</body>
+</html>
+
+
