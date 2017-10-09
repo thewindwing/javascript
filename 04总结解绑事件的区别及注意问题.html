@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+
+    /*
+    *
+    *
+    * my$("btn").onclick=function(){};注册事件
+    * my$("btn").onclick=null;解绑事件
+    *
+    * my$("btn").addEventListener("click",f1,false);绑定事件
+    * my$("btn").removeEventListener("click",f1,false);解绑事件
+    *
+    * my$("btn).attachEvent("onclick",f1);
+    * my$("btn").detachEvent("onclick",f1);
+    *
+    *
+    * */
+  </script>
+  <style>
+    div{
+      width: 200px;
+      height: 100px;
+      border:1px solid pink;
+    }
+  </style>
+</head>
+<body>
+<div id="dv">
+  <input type="button" value="按钮" id="btn1"/>
+</div>
+<input type="button" value="显示效果" id="btn2"/>
+<script src="common.js"></script>
+<script>
+  function f1() {
+    console.log("按钮被点击了");
+  }
+  //为第一个按钮绑定点击事件
+  my$("btn1").addEventListener("click",f1,false);
+  my$("btn2").onclick=function () {
+    my$("dv").innerHTML="";
+  };
+
+  //使用什么方式绑定事件,就应该用对应的方式进行解绑
+  //innerHTML="";是把元素中的内容干掉了,但是该元素中的元素事件,没有被解绑
+</script>
+</body>
+</html>

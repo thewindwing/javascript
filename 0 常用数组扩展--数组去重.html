@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*--数组扩展方法--*/
+    /*
+     *去除数组中的重复项
+     */
+    var arr = ['aaa','bbb','aaa','ccc','111','bbb','ddd','ccc','222','ccc','111','fff'];
+    //定义一个新的数组
+    var s = [];
+    //遍历数组
+    for(var i = 0;i<arr.length;i++){
+        if(s.indexOf(arr[i]) == -1){  //判断在s数组中是否存在，不存在则push到s数组中
+            s.push(arr[i]);
+        }
+    }
+    console.log(s); //["aaa", "bbb", "ccc", "111", "ddd", "222", "fff"]
+
+
+   /* Array.prototype.unique3 = function(){
+        var res = [];
+        var json = {};
+        for(var i = 0; i < this.length; i++){
+            if(!json[this[i]]){
+                res.push(this[i]);
+                json[this[i]] = 1;
+            }
+        }
+        return res;
+    }
+    var arr = [112,112,34,'你好',112,112,34,'你好','str','str1'];
+    alert(arr.unique3());*/
+
+/*
+    Array.prototype.unique2 = function(){
+     this.sort(); //先排序
+     console.log(this);
+     var res = [this[0]];
+     for(var i = 1; i < this.length; i++){
+        console.log(res,this[i])
+      if(this[i] !== res[res.length - 1]){
+       res.push(this[i]);
+      }
+     }
+     return res;
+    }
+    var arr = [13,2, 'a', 'a', 'b', 'd', 'e', 'e', 1, 30]
+    console.log(arr.unique2());*/
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #dv1{
+      width: 200px;
+      height: 150px;
+      background-color: red;
+    }
+    #dv2{
+      width: 150px;
+      height: 100px;
+      background-color: green;
+    }
+    #dv3{
+      width: 100px;
+      height: 50px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+<div id="dv1">
+  <div id="dv2">
+    <div id="dv3"></div>
+  </div>
+</div>
+<script src="common.js"></script>
+<script>
+  my$("dv1").onclick=function (e) {
+    //e.target------>最开始触发该事件的事件源
+    //window.event.srcElement---->最开始触发该事件的事件源--IE8的写法
+    //e.currentTarget--->当前触发该事件的事件对象--谷歌支持,火狐支持,IE8支持需要使用:window.event.currentTarget
+    console.log(this.id+"==="+window.event.srcElement.id);
+  };
+  my$("dv2").onclick=function () {
+    //console.log(this.id+"===="+e.target.id);
+    console.log(this.id);
+  };
+  my$("dv3").onclick=function () {
+    console.log(this.id);
+  };
+</script>
+</body>
+</html>

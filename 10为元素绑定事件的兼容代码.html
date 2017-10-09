@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/>
+<script src="common.js"></script>
+<script>
+  //对象.addEventListener("click",匿名函数,false);
+  //对象.attachEvent("onclick",匿名函数);
+  //为任意一个元素绑定多个相同的事件
+  function addEventListener(element,type,fn) {
+    //判断浏览器是否支持这个方法
+    if(element.addEventListener){
+      element.addEventListener(type,fn,false);
+    }else if(element.attachEvent){
+      element.attachEvent("on"+type,fn);
+    }else{
+      element["on"+type]=fn;
+    }
+  }
+  //测试
+  addEventListener(my$("btn"),"click",function () {
+    console.log("今天中午我要吃油炸臭豆腐");
+  });
+  addEventListener(my$("btn"),"click",function () {
+    console.log("今天中午我要清蒸榴莲");
+  });
+  addEventListener(my$("btn"),"click",function () {
+    console.log("今天中午我要吃红烧助教");
+  });
+</script>
+
+</body>
+</html>

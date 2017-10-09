@@ -35,13 +35,13 @@
        	var arr = [11, 9, 5, 30, 2, 4, 10];
 
        	for(var i=0;i<arr.length-1;i++){
-       		var onOff = true;
+       		var onOff = true;//假设这一轮都排好了
        		for(var j=0;j<arr.length-1-i;j++){
        			if(arr[j]<arr[j+1]){
        				var temp = arr[j];
        				arr[j]=arr[j+1];
        				arr[j+1]=temp;
-       				onOff=false;
+       				onOff=false;//只要进去if 就是没排好
        			}
        		}
        		if(onOff){

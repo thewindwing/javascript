@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/>
+<script src="common.js"></script>
+<script>
+  //为按钮绑定多个相同的事件,都可以触发
+
+  /*
+  *
+  * addEventListener---谷歌支持,火狐支持,IE11支持,IE8不支持
+  * 第一个参数:事件的类型(事件的名字),没有on
+  * 第二个参数:事件的处理函数(注册事件的函数:匿名函数,命名函数)
+  * 第三个参数:false,
+  *
+  *
+  * */
+//  my$("btn").addEventListener("click",function () {
+//    console.log("哈哈,我又变帅了");
+//  },false);
+//  my$("btn").addEventListener("click",function () {
+//    console.log("为什么这么帅");
+//  },false);
+//  my$("btn").addEventListener("click",function () {
+//    console.log("就是这么帅");
+//  },false);
+
+  /*
+  *
+  * attachEvent():谷歌不支持,火狐也不支持,IE8支持的,....IE11不支持
+  * 第一个参数:事件类型(事件的名字),注意:有on
+  * 第二个参数:事件处理函数(匿名函数,命名函数)
+  * //倒着显示的
+  *
+  *
+  * */
+//  my$("btn").attachEvent("onclick",function () {
+//    console.log("今天不是晴天,我喜欢1");
+//  });
+//  my$("btn").attachEvent("onclick",function () {
+//    console.log("今天不是晴天,我喜欢2");
+//  });
+//  my$("btn").attachEvent("onclick",function () {
+//    console.log("今天不是晴天,我喜欢3");
+//  });
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #dv1{
+      width: 200px;
+      height: 150px;
+      background-color: red;
+    }
+    #dv2{
+      width: 150px;
+      height: 100px;
+      background-color: green;
+    }
+    #dv3{
+      width: 100px;
+      height: 50px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+<div id="dv1">
+  <div id="dv2">
+    <div id="dv3"></div>
+  </div>
+</div>
+<script src="common.js"></script>
+<script>
+ my$("dv1").onclick=function () {
+   console.log(this.id);
+ };
+ my$("dv2").onclick=function () {
+   console.log(this.id);
+ };
+// my$("dv3").onclick=function (e) {
+//   console.log(this.id);
+//   e.stopPropagation();//调用这个方法即可
+// };
+ my$("dv3").onclick=function (e) {
+   console.log(this.id);
+   //window.event.stopPropagation();//调用这个方法即可
+   //window.event.cancelBubble=true;
+   e=window.event||e;
+   if(e.stopPropagation){
+     e.stopPropagation();
+   }else{
+     e.cancelBubble=true;
+   }
+ };
+
+ document.onclick=function () {
+   console.log("哎呦喂我的天.我也被点了");
+ };
+
+  //事件冒泡-----元素A中嵌套了另一个元素B,里面元素B和外面元素A注册了相同的事件,如果里面元素B的事件触发了,外面的元素A的该事件也会自动的触发
+
+  //如何阻止事件冒泡:
+  //window.event.cancelBubble=true或者是e.stopPropagation();
+</script>
+</body>
+</html>

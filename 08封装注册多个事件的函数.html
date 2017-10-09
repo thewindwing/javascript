@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/>
+<script src="common.js"></script>
+<script>
+  //为任意的一个元素注册多个的事件
+  //元素注册事件:元素,事件名字,事件处理函数(事件处理程序)
+  function addEvent(element,type,fn) {
+    //先获取该元素的事件
+    var oldEvent=element["on"+type];
+    //判断该元素之前有没有注册过事件
+    if(typeof oldEvent!="function"){
+      element["on"+type]=fn;
+    }else{
+      //注册了
+      element["on"+type]=function () {
+        oldEvent();
+        fn();
+      };
+    }
+  }
+  addEvent(my$("btn"),"click",function () {
+    console.log("助教没有小杨帅");
+  });
+  addEvent(my$("btn"),"click",function () {
+    console.log("小杨才是最帅的");
+  });
+  addEvent(my$("btn"),"click",function () {
+    console.log("太帅真的很寂寞...");
+  });
+
+
+
+</script>
+</body>
+</html>
